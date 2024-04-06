@@ -1,0 +1,9 @@
+{
+  "parent": "litematica_wand:custom/wand3d",
+  "textures": {
+    "1": "litematica_wand:block/wand3d",
+    "2": "litematica_wand:block/wand3dmain",
+    "missing": "litematica_wand:block/wand3dmain",
+    "particle": "litematica_wand:item/wand"
+  }
+}

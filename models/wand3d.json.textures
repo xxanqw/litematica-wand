@@ -1,0 +1,12 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "1": "wand3d",
+        "2": "wand3dmain",
+        "missing": "wand3dmain"
+      },
+      "name": "default"
+    }
+  }
+}

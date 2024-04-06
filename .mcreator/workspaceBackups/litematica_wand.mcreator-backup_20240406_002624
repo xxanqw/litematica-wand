@@ -1,0 +1,111 @@
+{
+  "mod_elements": [
+    {
+      "name": "Wand",
+      "type": "item",
+      "sortid": 2,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wand",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/litematica_wand/models/item/wand.json",
+          "src/main/java/pp/ua/xxanqw/litematicawand/item/WandItem.java"
+        ]
+      }
+    },
+    {
+      "name": "WandRecipe",
+      "type": "recipe",
+      "sortid": 4,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wand_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/litematica_wand/recipes/wand_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "Wand3d",
+      "type": "block",
+      "sortid": 5,
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wand_3d",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/litematica_wand/models/block/wand_3d.json",
+          "src/main/resources/assets/litematica_wand/models/item/wand_3d.json",
+          "src/main/resources/assets/litematica_wand/blockstates/wand_3d.json",
+          "src/main/java/pp/ua/xxanqw/litematicawand/block/Wand3dBlock.java"
+        ]
+      }
+    },
+    {
+      "name": "WandAchievement",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wand_achievement",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/litematica_wand/advancements/wand_achievement.json"
+        ]
+      }
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [],
+  "language_map": {
+    "ru_ru": {
+      "advancements.wand_achievement.title": "No way..",
+      "block.litematica_wand.wand_3d": "Wand 3d",
+      "item.litematica_wand.wand": "Палочка",
+      "advancements.wand_achievement.descr": "I T G I R L, you know I\u0027m that girl"
+    },
+    "en_us": {
+      "advancements.wand_achievement.title": "No way..",
+      "block.litematica_wand.wand_3d": "Wand 3d",
+      "item.litematica_wand.wand": "Wand",
+      "advancements.wand_achievement.descr": "I T G I R L, you know I\u0027m that girl"
+    },
+    "uk_ua": {
+      "advancements.wand_achievement.title": "No way..",
+      "block.litematica_wand.wand_3d": "Wand 3d",
+      "item.litematica_wand.wand": "Паличка",
+      "advancements.wand_achievement.descr": "I T G I R L, you know I\u0027m that girl"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "litematica_wand",
+    "modName": "Litematica Wand",
+    "version": "1.0.3",
+    "description": "Mod that makes life better",
+    "author": "xxanqw (kizaru123)",
+    "websiteURL": "https://xxanqw.pp.ua/wand",
+    "license": "GNU General Public License version 3 (GPLv3)",
+    "disableForgeVersionCheck": true,
+    "serverSideOnly": false,
+    "modPicture": "logo_mod",
+    "requiredMods": [
+      "litematica"
+    ],
+    "dependencies": [
+      "fabric-api",
+      "malilib"
+    ],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "fabric-1.20.1",
+    "credits": "nothing to read here.",
+    "modElementsPackage": "pp.ua.xxanqw.litematicawand",
+    "lockBaseModFiles": false
+  },
+  "mcreatorVersion": 202300452316
+}
