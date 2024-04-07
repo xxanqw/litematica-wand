@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "litematica_wand",
+  "version": "${version}",
+  "name": "Litematica Wand",
+  "description": "Mod that makes life better!",
+  "authors": [
+    "xxanqw (kizaru123)"
+  ],
+  "contact": {
+    "homepage": "https://xxanqw.pp.ua/wand",
+    "issues": "https://github.com/xxanqw/litematica-wand/issues",
+    "sources": "https://github.com/xxanqw/litematica-wand"
+  },
+  "license": "GNU General Public License version 3 (GPLv3)",
+  "icon": "assets/litematica_wand/logo_mod.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "pp.ua.xxanqw.litematica_wand.client.LitematicaWandClient"
+    ],
+    "main": [
+      "pp.ua.xxanqw.litematica_wand.LitematicaWand"
+    ]
+  },
+  "mixins": [
+    "litematica_wand.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "litematica": ">=0.15.0"
+  }
+}
