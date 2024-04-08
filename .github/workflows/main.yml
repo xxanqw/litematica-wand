@@ -1,0 +1,19 @@
+name: Compiling
+
+on:
+  push:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Compile
+      uses: Ruochenfu2011/compilation@v1
+      
+    - name: Archive Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: ./build/libs
