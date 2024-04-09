@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: MC Version
+        run: |
+          echo: "Version: ${{ github.event.inputs.tags }}"
+
       - name: Build
         uses: Ruochenfu2011/compilation@v1
 
