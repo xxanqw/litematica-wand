@@ -1,5 +1,6 @@
 Now made by myself!  
-[![Compiling](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml)
+[![Compiling](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml) - 1.20.4 (click on badge to see job and download JAR.zip)
+[![Compiling](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml/badge.svg?branch=1.20.1)](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml) - 1.20.1
 
 * * *
 
