@@ -1,7 +1,7 @@
 name: Compiling
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Compile
+    - name: Build
       uses: Ruochenfu2011/compilation@v1
       
-    - name: Archive Artifacts
+    - name: Archive built .jar
       uses: actions/upload-artifact@v2
       with:
-        name: Artifacts
+        name: Build
         path: ./build/libs
