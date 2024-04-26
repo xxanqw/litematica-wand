@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #G",
+    " /R",
+    "/  "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:blue_stained_glass_pane"
+    },
+    "G": {
+      "item": "minecraft:green_stained_glass_pane"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "minecraft:red_stained_glass_pane"
+    }
+  },
+  "result": {
+    "id": "litematica_wand:wand",
+    "item": "litematica_wand:wand",
+    "count": 1
+  },
+  "group": "misc"
+}

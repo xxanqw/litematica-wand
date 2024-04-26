@@ -16,7 +16,6 @@ public class Wand3DItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-
         tooltip.add(Text.translatable("item.litematica_wand.wand_3d.tooltip").formatted(Formatting.UNDERLINE));
     }
 }
