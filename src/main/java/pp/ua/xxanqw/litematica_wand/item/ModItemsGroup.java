@@ -17,7 +17,7 @@ public class ModItemsGroup {
                     }).build();
 
     public static void registerItemGroups() {
-        Registry.register(Registries.ITEM_GROUP, new Identifier(LitematicaWand.MOD_ID, "wand"), WAND_GROUP);
+        Registry.register(Registries.ITEM_GROUP, Identifier.of(LitematicaWand.MOD_ID, "wand"), WAND_GROUP);
         LitematicaWand.LOGGER.info("Registering item groups of " + LitematicaWand.MOD_ID);
     }
 }

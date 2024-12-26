@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pp.ua.xxanqw.litematica_wand.item.ModItems;
 import pp.ua.xxanqw.litematica_wand.item.ModItemsGroup;
-import pp.ua.xxanqw.litematica_wand.item.WandItem;
 
 public class LitematicaWand implements ModInitializer {
     public static final String MOD_ID = "litematica_wand";

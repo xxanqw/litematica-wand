@@ -1,0 +1,8 @@
+{
+	"parent": "litematica_wand:custom/wand_3d",
+	"textures": {
+		"1": "litematica_wand:items/wand_3d",
+		"2": "litematica_wand:items/wand_3d_main",
+		"missing": "litematica_wand:items/wand_3d_main"
+	}
+}
