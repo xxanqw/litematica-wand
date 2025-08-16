@@ -20,12 +20,22 @@ jobs:
         run: |
           # Convert comma-separated branches to JSON array
           branches="${{ github.event.inputs.branches }}"
-          # Remove spaces and convert to JSON array
+          echo "Input branches: $branches"
+          
+          # Remove spaces
           branches_clean=$(echo "$branches" | tr -d ' ')
-          # Convert to JSON array format
-          json_array=$(echo "$branches_clean" | sed 's/,/","/g' | sed 's/^/"/' | sed 's/$/"/' | sed 's/^/[/' | sed 's/$/]/')
+          
+          # Convert to JSON array using Python (more reliable)
+          json_array=$(python3 -c "
+          import json
+          import sys
+          branches = '$branches_clean'.split(',')
+          branches = [b.strip() for b in branches if b.strip()]
+          print(json.dumps(branches))
+          ")
+          
           echo "matrix=$json_array" >> $GITHUB_OUTPUT
-          echo "Branches to build: $json_array"
+          echo "Generated matrix: $json_array"
 
   build:
     needs: prepare
