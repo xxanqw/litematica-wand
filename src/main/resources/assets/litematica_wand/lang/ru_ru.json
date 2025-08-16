@@ -1,7 +1,5 @@
 {
   "item.litematica_wand.wand" : "Палочка",
   "item.litematica_wand.wand.tooltip" : "Ну кайф",
-  "item.litematica_wand.wand_3d" : "Палочка в 3Д",
-  "item.litematica_wand.wand_3d.tooltip": "хз",
   "itemgroup.wand" : "Litematica Wand"
 }

@@ -13,7 +13,6 @@ public class ModItemsGroup {
     public static final ItemGroup WAND_GROUP = FabricItemGroup.builder().displayName(Text.translatable("itemgroup.wand"))
                     .icon(() -> new ItemStack(ModItems.WAND)).entries((displayContext, entries) -> {
                         entries.add(ModItems.WAND);
-                        entries.add(ModItems.WAND_3D);
                     }).build();
 
     public static void registerItemGroups() {
