@@ -42,7 +42,7 @@ jobs:
           ref: ${{ matrix.branch }}
 
       - name: Build
-        uses: Ruochenfu2011/compilation@v1
+        uses: xxanqw/compilation@v2
 
       - name: Archive built .jar
         uses: actions/upload-artifact@v4
