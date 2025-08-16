@@ -59,7 +59,7 @@ jobs:
           echo "Expected branch: ${{ matrix.branch }}"
 
       - name: Build
-        uses: xxanqw/compilation@v2
+        uses: xxanqw/compilation@v3
 
       - name: Archive built .jar
         uses: actions/upload-artifact@v4
