@@ -24,7 +24,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Validate Gradle wrapper
-        run: ./gradlew wrapper --gradle-version 8.5
+        run: ./gradlew wrapper --gradle-version 8.14
 
       - name: Download dependencies
         run: ./gradlew dependencies --refresh-dependencies
