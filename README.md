@@ -11,11 +11,11 @@ An easy-to-use add-on for Litematica.
 
 1.  **Add the wand to your Litematica configuration.**
 
-    ![](https://cdn.xserv.pp.ua/images/mods/litematicawand/config.png)
+    ![](https://cdn.xserv.pp.ua/files/images/mods/litematicawand/config.png)
 
 2.  **Craft it!**
 
-    ![Crafting Recipe](https://cdn.xserv.pp.ua/images/mods/litematicawand/newcraft.png)
+    ![Crafting Recipe](https://cdn.xserv.pp.ua/files/images/mods/litematicawand/newcraft.png)
 
 That's all! You can now use the item to make selections.
 
