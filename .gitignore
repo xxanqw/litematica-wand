@@ -24,3 +24,5 @@ gradle-app.setting
 run
 build
 .vscode
+
+bin
