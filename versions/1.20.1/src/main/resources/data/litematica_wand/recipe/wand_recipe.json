@@ -9,7 +9,7 @@
         "/": "minecraft:stick"
     },
     "result": {
-        "id": "litematica_wand:wand",
+        "item": "litematica_wand:wand",
         "count": 1
     },
     "group": "misc"
