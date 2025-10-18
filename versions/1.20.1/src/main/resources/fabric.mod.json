@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "${id}",
-  "version": "${version}",
-  "name": "${name}",
+  "version": "0.1.6",
+  "name": "Litematica Wand",
   "description": "Mod that makes life better!",
   "authors": [
     "xxanqw (kizaru123)"

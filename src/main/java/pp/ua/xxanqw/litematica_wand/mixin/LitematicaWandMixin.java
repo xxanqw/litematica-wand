@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MinecraftServer.class)
 public class LitematicaWandMixin {
-    @Inject(at = @At("HEAD"), method = "loadWorld")
-    private void init(CallbackInfo info) {
-        // this code is for MinecraftServer.loadWorld()V
-    }
+	@Inject(at = @At("HEAD"), method = "loadWorld")
+	private void init(CallbackInfo info) {
+		// This code is injected into the start of MinecraftServer.loadWorld()V
+	}
 }

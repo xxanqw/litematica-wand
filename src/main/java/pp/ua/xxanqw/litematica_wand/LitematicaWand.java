@@ -1,7 +1,9 @@
 package pp.ua.xxanqw.litematica_wand;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.slf4j.Logger;
@@ -18,11 +20,16 @@ public class LitematicaWand implements ModInitializer {
         LOGGER.info("Initializing Litematica Wand");
         ModItems.registerModItems();
         ModItemsGroup.registerItemGroups();
-        
-        // Register tooltip for the wand item
-        ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
-            if (itemStack.isOf(ModItems.WAND)) {
-                list.add(Text.translatable("item.litematica_wand.wand.tooltip").formatted(Formatting.BOLD));
+
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+            registerClientCallbacks();
+        }
+    }
+
+    private static void registerClientCallbacks() {
+        ItemTooltipCallback.EVENT.register((stack, context, type, tooltip) -> {
+            if (stack.isOf(ModItems.WAND)) {
+                tooltip.add(Text.translatable("item.litematica_wand.wand.tooltip").formatted(Formatting.BOLD));
             }
         });
     }
