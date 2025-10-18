@@ -1,16 +1,17 @@
 {
     "type": "minecraft:crafting_shaped",
+    "category": "misc",
     "pattern": [
-        "  /",
-        " / ",
-        "/  "
+        "  #",
+        " # ",
+        "#  "
     ],
     "key": {
-        "/": "minecraft:stick"
+        "#": {
+            "item": "minecraft:stick"
+        }
     },
     "result": {
-        "item": "litematica_wand:wand",
-        "count": 1
-    },
-    "group": "misc"
+        "item": "litematica_wand:wand"
+    }
 }

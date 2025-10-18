@@ -23,9 +23,6 @@
       "pp.ua.xxanqw.litematica_wand.LitematicaWand"
     ]
   },
-  "mixins": [
-    "litematica_wand.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.16",
     "fabric": "*",
