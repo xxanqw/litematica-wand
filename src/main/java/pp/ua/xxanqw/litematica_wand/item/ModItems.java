@@ -7,7 +7,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import pp.ua.xxanqw.litematica_wand.LitematicaWand;
-import pp.ua.xxanqw.litematica_wand.item.WandItem;
 
 import java.util.function.Function;
 
