@@ -109,5 +109,5 @@ jobs:
       - name: Archive built .jar
         uses: christopherhx/gitea-upload-artifact@v4
         with:
-          name: Build-${{ matrix.branch }}
+          name: litematica-wand_build_artifacts
           path: build/artifacts
