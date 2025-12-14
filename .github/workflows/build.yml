@@ -68,46 +68,42 @@ jobs:
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
 
-      - name: Build all versions
-        run: ./gradlew build
+      - name: Build Fabric
+        run: ./gradlew build -Ploader=fabric
 
-      - name: Collect renamed artifacts
+      - name: Build NeoForge
+        run: ./gradlew build -Ploader=neoforge
+
+      - name: Build Quilt
+        run: ./gradlew build -Ploader=quilt
+
+      - name: Collect and zip all artifacts
         run: |
-          set -eo pipefail
-          MOD_VERSION=$(grep '^mod.version=' gradle.properties | cut -d'=' -f2- | tr -d '\r')
           mkdir -p build/artifacts
-          for version_dir in versions/*; do
-            [ -d "$version_dir" ] || continue
-            props_file="$version_dir/gradle.properties"
-            [ -f "$props_file" ] || continue
-            MC_TITLE=$(grep '^mod.mc_title=' "$props_file" | cut -d'=' -f2- | tr -d '\r')
-            if [ -z "$MC_TITLE" ]; then
-              MC_TITLE=$(basename "$version_dir")
+          
+          # Scan each modloader folder for built JARs
+          for loader in fabric neoforge quilt; do
+            loader_dir="versions/$loader"
+            if [ -d "$loader_dir" ]; then
+              echo "Scanning $loader_dir..."
+              find "$loader_dir" -type f -path '*.jar' -exec cp -v {} build/artifacts/ \;
             fi
-            MC_TITLE=${MC_TITLE// /}
-            libs_dir="$version_dir/build/libs"
-            [ -d "$libs_dir" ] || continue
-            for jar in "$libs_dir"/litematica_wand-"$MOD_VERSION"+*.jar; do
-              [ -e "$jar" ] || continue
-              base=$(basename "$jar")
-              rest=${base#litematica_wand-$MOD_VERSION+}
-              if [[ "$rest" == *"-sources.jar" ]]; then
-                original_version=${rest%-sources.jar}
-                suffix=${rest#"$original_version"}
-              elif [[ "$rest" == *.jar ]]; then
-                original_version=${rest%.jar}
-                suffix=${rest#"$original_version"}
-              else
-                continue
-              fi
-              new_base="litematica_wand-${MOD_VERSION}+${MC_TITLE}${suffix}"
-              cp "$jar" "build/artifacts/$new_base"
-            done
           done
-          ls -R build/artifacts
+          
+          if [ -n "$(ls -A build/artifacts/*.jar 2>/dev/null)" ]; then
+            cd build/artifacts
+            zip build-artifacts.zip *.jar
+            rm *.jar
+            cd ../..
+            echo "Created build-artifacts.zip"
+            ls -lh build/artifacts
+          else
+            echo "No JAR files found!"
+            exit 1
+          fi
 
-      - name: Archive built .jar
+      - name: Archive built artifacts
         uses: christopherhx/gitea-upload-artifact@v4
         with:
           name: litematica-wand_build_artifacts
-          path: build/artifacts
+          path: build/artifacts/build-artifacts.zip

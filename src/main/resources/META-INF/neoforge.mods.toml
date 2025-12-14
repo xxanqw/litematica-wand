@@ -1,0 +1,22 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "General Public License v3.0 only (GPL-3.0-only)"
+issueTrackerURL = "https://git.xserv.pp.ua/xxanqw/litematica-wand/issues"
+websiteURL = "https://git.xserv.pp.ua/xxanqw/litematica-wand"
+
+[[mods]]
+modId = "litematica_wand"
+version = "${version}"
+displayName = "Litematica Wand"
+logoFile = "assets/litematica_wand/logo_mod.png"
+authors = "xxanqw (kizaru123)"
+description = '''
+Mod that makes life better!.
+'''
+
+[[dependencies.litematica_wand]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.0,)"
+ordering = "NONE"
+side = "BOTH"
