@@ -1,7 +1,7 @@
 <div align=center>
 
 # Litematica Wand
-[![Compiling](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml/badge.svg?branch=main&style=flat)](https://github.com/xxanqw/litematica-wand/actions/workflows/main.yml)
+[![Compiling](https://git.xserv.pp.ua/xxanqw/litematica-wand/actions/workflows/build.yml/badge.svg?branch=fabric-multi&style=flat)](https://git.xserv.pp.ua/xxanqw/litematica-wand/actions/workflows/build.yml)
 
 
 An easy-to-use add-on for Litematica.
