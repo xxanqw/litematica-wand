@@ -107,7 +107,7 @@ jobs:
           ls -R build/artifacts
 
       - name: Archive built .jar
-        uses: actions/upload-artifact@v4
+        uses: christopherhx/gitea-upload-artifact@v4
         with:
           name: Build-${{ matrix.branch }}
           path: build/artifacts
