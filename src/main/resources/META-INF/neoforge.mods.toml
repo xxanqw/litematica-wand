@@ -6,7 +6,7 @@ websiteURL = "https://git.xserv.pp.ua/xxanqw/litematica-wand"
 
 [[mods]]
 modId = "litematica_wand"
-version = "${version}"
+version = "${version}+1.21.4-1.21.11"
 displayName = "Litematica Wand"
 logoFile = "assets/litematica_wand/logo_mod.png"
 authors = "xxanqw (kizaru123)"
