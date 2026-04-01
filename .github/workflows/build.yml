@@ -1,6 +1,9 @@
 name: Mod Build
 
 on:
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
     inputs:
       branches:
@@ -14,25 +17,36 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      is_tag: ${{ steps.set-matrix.outputs.is_tag }}
+      tag_name: ${{ steps.set-matrix.outputs.tag_name }}
     steps:
       - name: Set matrix
         id: set-matrix
         run: |
-          # Convert comma-separated branches to JSON array
-          branches="${{ github.event.inputs.branches }}"
-          echo "Input branches: $branches"
-          
-          # Remove spaces
-          branches_clean=$(echo "$branches" | tr -d ' ')
-          
-          # Convert to JSON array using Python (more reliable)
-          json_array=$(python3 -c "
-          import json
-          import sys
-          branches = '$branches_clean'.split(',')
-          branches = [b.strip() for b in branches if b.strip()]
-          print(json.dumps(branches))
-          ")
+          # Detect if triggered by a tag push
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            echo "is_tag=true" >> $GITHUB_OUTPUT
+            echo "tag_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            json_array='["${{ github.ref_name }}"]'
+          else
+            echo "is_tag=false" >> $GITHUB_OUTPUT
+            echo "tag_name=" >> $GITHUB_OUTPUT
+            # Convert comma-separated branches to JSON array
+            branches="${{ github.event.inputs.branches }}"
+            echo "Input branches: $branches"
+            
+            # Remove spaces
+            branches_clean=$(echo "$branches" | tr -d ' ')
+            
+            # Convert to JSON array using Python (more reliable)
+            json_array=$(python3 -c "
+            import json
+            import sys
+            branches = '$branches_clean'.split(',')
+            branches = [b.strip() for b in branches if b.strip()]
+            print(json.dumps(branches))
+            ")
+          fi
           
           echo "matrix=$json_array" >> $GITHUB_OUTPUT
           echo "Generated matrix: $json_array"
@@ -62,33 +76,36 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: '25'
           cache: gradle
 
       - name: Grant execute permission for Gradle wrapper
-        run: chmod +x gradlew
+        run: |
+          chmod +x gradlew
+          chmod +x neoforge/gradlew
 
       - name: Build Fabric
-        run: ./gradlew build -Ploader=fabric
+        run: ./gradlew build
 
       - name: Build NeoForge
-        run: ./gradlew build -Ploader=neoforge
-
-      - name: Build Quilt
-        run: ./gradlew build -Ploader=quilt
+        run: ./neoforge/gradlew build
+        working-directory: .
 
       - name: Collect and zip all artifacts
         run: |
           mkdir -p build/artifacts
           
-          # Scan each modloader folder for built JARs
-          for loader in fabric neoforge quilt; do
-            loader_dir="versions/$loader"
-            if [ -d "$loader_dir" ]; then
-              echo "Scanning $loader_dir..."
-              find "$loader_dir" -type f -path '*.jar' -exec cp -v {} build/artifacts/ \;
-            fi
-          done
+          # Collect Fabric JARs
+          if [ -d "versions/fabric" ]; then
+            echo "Scanning Fabric output..."
+            find versions/fabric -type f -path '*.jar' -exec cp -v {} build/artifacts/ \;
+          fi
+          
+          # Collect NeoForge JARs
+          if [ -d "neoforge/build/libs" ]; then
+            echo "Scanning NeoForge output..."
+            find neoforge/build/libs -type f -name '*.jar' ! -name '*-sources.jar' -exec cp -v {} build/artifacts/ \;
+          fi
           
           if [ -n "$(ls -A build/artifacts/*.jar 2>/dev/null)" ]; then
             cd build/artifacts
@@ -102,8 +119,29 @@ jobs:
             exit 1
           fi
 
-      - name: Archive built artifacts
-        uses: christopherhx/gitea-upload-artifact@v4
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
           name: litematica-wand_build_artifacts
           path: build/artifacts/build-artifacts.zip
+
+  release:
+    needs: [prepare, build]
+    if: needs.prepare.outputs.is_tag == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: litematica-wand_build_artifacts
+          path: build/artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare.outputs.tag_name }}
+          name: Release ${{ needs.prepare.outputs.tag_name }}
+          files: build/artifacts/build-artifacts.zip
+          generate_release_notes: true

@@ -1,20 +1,22 @@
 package pp.ua.xxanqw.litematica_wand.item;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import pp.ua.xxanqw.litematica_wand.Constants;
+
 import java.util.function.Function;
 
 public class ModItems {
-    public static final Item WAND = registerItem("wand", WandItem::new, new Item.Settings().maxCount(1).rarity(Rarity.EPIC));
+    public static final Item WAND = registerItem("wand", WandItem::new, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
 
-    private static Item registerItem(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
-        RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(Constants.MOD_ID, path));
-        return Items.register(registryKey, factory, settings);
+    private static Item registerItem(String path, Function<Item.Properties, Item> factory, Item.Properties properties) {
+        ResourceKey<Item> registryKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, path));
+        return Registry.register(BuiltInRegistries.ITEM, registryKey, factory.apply(properties));
     }
 
     public static void registerModItems() {

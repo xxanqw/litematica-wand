@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pp.ua.xxanqw.litematica_wand.item.ModItems;
@@ -27,8 +27,8 @@ public class LitematicaWand implements ModInitializer {
 
     private static void registerClientCallbacks() {
         ItemTooltipCallback.EVENT.register((stack, context, type, tooltip) -> {
-            if (stack.isOf(ModItems.WAND)) {
-                tooltip.add(Text.translatable("item.litematica_wand.wand.tooltip"));
+            if (stack.is(ModItems.WAND)) {
+                tooltip.add(Component.translatable("item.litematica_wand.wand.tooltip"));
             }
         });
     }

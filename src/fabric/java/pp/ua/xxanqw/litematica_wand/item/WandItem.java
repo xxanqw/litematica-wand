@@ -1,9 +1,9 @@
 package pp.ua.xxanqw.litematica_wand.item;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class WandItem extends Item {
-    public WandItem(Settings settings) {
-        super(settings);
+    public WandItem(Properties properties) {
+        super(properties);
     }
 }
