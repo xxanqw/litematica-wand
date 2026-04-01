@@ -39,13 +39,7 @@ jobs:
             branches_clean=$(echo "$branches" | tr -d ' ')
             
             # Convert to JSON array using Python (more reliable)
-            json_array=$(python3 -c "
-            import json
-            import sys
-            branches = '$branches_clean'.split(',')
-            branches = [b.strip() for b in branches if b.strip()]
-            print(json.dumps(branches))
-            ")
+            json_array=$(python3 -c "import json,sys; branches=sys.argv[1].split(','); branches=[b.strip() for b in branches if b.strip()]; print(json.dumps(branches))" "$branches_clean")
           fi
           
           echo "matrix=$json_array" >> $GITHUB_OUTPUT
