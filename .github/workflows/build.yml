@@ -24,6 +24,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
       is_tag: ${{ steps.set-matrix.outputs.is_tag }}
       tag_name: ${{ steps.set-matrix.outputs.tag_name }}
+      should_release: ${{ steps.set-matrix.outputs.should_release }}
     steps:
       - name: Set matrix
         id: set-matrix
