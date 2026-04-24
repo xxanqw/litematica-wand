@@ -16,7 +16,7 @@ public class ModItems {
 
     private static Item registerItem(String path, Function<Item.Properties, Item> factory, Item.Properties properties) {
         ResourceKey<Item> registryKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Constants.MOD_ID, path));
-        return Registry.register(BuiltInRegistries.ITEM, registryKey, factory.apply(properties));
+        return Registry.register(BuiltInRegistries.ITEM, registryKey, factory.apply(properties.setId(registryKey)));
     }
 
     public static void registerModItems() {

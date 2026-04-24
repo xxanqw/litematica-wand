@@ -1,5 +1,6 @@
 {
-  "item.litematica_wand.wand" : "Wand",
-  "item.litematica_wand.wand.tooltip" : "The best Wand ever created 4real",
-  "itemgroup.wand" : "Litematica Wand"
+  "item.litematica_wand.wand": "Wand",
+  "item.litematica_wand.wand.tooltip": "The best Wand ever created 4real",
+  "itemgroup.wand": "Litematica Wand",
+  "mod.litematica_wand.description": "Mod that makes life better!"
 }

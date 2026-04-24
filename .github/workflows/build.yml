@@ -11,6 +11,11 @@ on:
         required: true
         default: 'fabric-multi'
         type: string
+      release:
+        description: 'Create GitHub release'
+        required: false
+        default: true
+        type: boolean
 
 jobs:
   prepare:
@@ -27,10 +32,12 @@ jobs:
           if [ "${{ github.ref_type }}" = "tag" ]; then
             echo "is_tag=true" >> $GITHUB_OUTPUT
             echo "tag_name=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "should_release=true" >> $GITHUB_OUTPUT
             json_array='["${{ github.ref_name }}"]'
           else
             echo "is_tag=false" >> $GITHUB_OUTPUT
             echo "tag_name=" >> $GITHUB_OUTPUT
+            echo "should_release=${{ github.event.inputs.release }}" >> $GITHUB_OUTPUT
             # Convert comma-separated branches to JSON array
             branches="${{ github.event.inputs.branches }}"
             echo "Input branches: $branches"
@@ -121,21 +128,34 @@ jobs:
 
   release:
     needs: [prepare, build]
-    if: needs.prepare.outputs.is_tag == 'true'
+    if: needs.prepare.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read mod version and game version
+        id: read-version
+        run: |
+          MOD_VERSION=$(grep "^mod.version=" gradle.properties | cut -d'=' -f2)
+          GAME_VERSION=$(grep "^mod.minecraft_version_range=" gradle.properties | cut -d'=' -f2)
+          echo "mod_version=$MOD_VERSION" >> $GITHUB_OUTPUT
+          echo "game_version=$GAME_VERSION" >> $GITHUB_OUTPUT
+
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: litematica-wand_build_artifacts
+          name: litematica_wand_build_artifacts
           path: build/artifacts
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.prepare.outputs.tag_name }}
-          name: Release ${{ needs.prepare.outputs.tag_name }}
+          tag_name: ${{ needs.prepare.outputs.tag_name || format('v{0}', steps.read-version.outputs.mod_version) }}
+          name: Litematica Wand (${{ steps.read-version.outputs.game_version }}) [${{ steps.read-version.outputs.mod_version }}]
+          body: |
+            [CurseForge](https://s.co.ua/wand) / [Modrinth](https://s.co.ua/wand-modrinth)
           files: build/artifacts/build-artifacts.zip
           generate_release_notes: true
