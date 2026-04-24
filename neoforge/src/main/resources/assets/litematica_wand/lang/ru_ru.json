@@ -2,5 +2,5 @@
   "item.litematica_wand.wand": "Палочка",
   "item.litematica_wand.wand.tooltip": "Ну кайф",
   "itemgroup.wand": "Litematica Wand",
-  "mod.litematica_wand.description": "Мод, который делает жизнь лучше!"
+  "modmenu.descriptionTranslation.litematica_wand": "Мод, который делает жизнь лучше!"
 }
